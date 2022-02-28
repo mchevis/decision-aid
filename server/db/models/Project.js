@@ -9,7 +9,7 @@ const Project = db.define("project", {
       notEmpty: true,
     },
   },
-  type: {
+  category: {
     type: ENUM("product", "trip"),
     allowNull: false,
     validate: {
