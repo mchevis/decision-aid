@@ -10,7 +10,13 @@ const Attribute = db.define("attribute", {
     },
   },
   criteriaType: {
-    type: ENUM("boolean", "minMax", "informational"),
+    type: ENUM(
+      "boolean",
+      "minMax",
+      "lessThanOrEqualTo",
+      "moreThanOrEqualTo",
+      "informational"
+    ),
     allowNull: false,
     validate: {
       notEmpty: true,

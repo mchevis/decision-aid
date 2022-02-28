@@ -16,6 +16,13 @@ const Project = db.define("project", {
       notEmpty: true,
     },
   },
+  subCategory: {
+    type: ENUM("appliance", "furniture"),
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   status: {
     type: ENUM("analyzing", "archived", "completed"),
     defaultValue: "analyzing",
