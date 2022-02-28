@@ -1,10 +1,73 @@
 * {
-  font-family: Roboto;
+  box-sizing: border-box;
+  margin: 0px;
+  font-family: "Asap", sans-serif;
 }
 
-.living_room_image p {
-  color: white;
-  font-size: 4rem;
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: white;
+  margin-bottom: 20px;
+  font-family: "Asap", sans-serif;
+  height: auto;
+}
+
+#app {
+  display: grid;
+  grid-gap: 0.5rem;
+  height: 100vh;
+  min-height: 100%;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+}
+
+#header {
+  grid-area: header;
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
-  padding-top: 7rem;
+  padding: 0.2em;
+  padding-bottom: 0px;
+  font-family: "Roboto Slab", serif;
+}
+
+#nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.4em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid lightgray;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+#nav > * {
+  margin: 0 1em;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+}
+
+#nav .current {
+  text-decoration: underline;
+}
+
+#main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+  padding-bottom: 2em;
+  text-align: center;
+  font-size: small;
 }
