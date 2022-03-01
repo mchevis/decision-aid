@@ -14,16 +14,18 @@ const ProjectDetails = () => {
   }, []);
 
   return (
-    <div>
+    <div className="project-details--page">
       <h1>Project Details</h1>
-      <h2>Info:</h2>
-      <ul>
-        {Object.entries(project).map((projectProp) => (
-          <li key={projectProp[0]}>
-            {projectProp[0]}: {projectProp[1]}
-          </li>
-        ))}
-      </ul>
+      <div className="project--info">
+        <h2>Info</h2>
+        <ul>
+          {Object.entries(project).map((projectProp) => (
+            <li key={projectProp[0]}>
+              {projectProp[0]}: {projectProp[1]}
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="comp--table">
         <CompTable projectId={project.id} />
       </div>

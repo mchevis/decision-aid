@@ -72,10 +72,25 @@ footer {
   font-size: small;
 }
 
+.project-details--page {
+  margin: 2em;
+}
+
+.project--info {
+  margin: 1em;
+}
+
+.comp--table {
+  display: flex;
+}
+
+.comp--table > * {
+  margin: 1em;
+}
+
 .products--list {
   display: flex;
-  flex-wrap: wrap;
-  margin: 1em;
+  flex-wrap: nowrap;
 }
 
 .productsList--productItem {
@@ -118,10 +133,17 @@ footer {
   height: 36px;
 }
 
-.comp--table {
+.attributeName {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.comp--table > * {
-  margin: 1em;
+.attributeName > * {
+  padding: 0.2em;
+}
+
+.attributeName .criteria {
+  border: 1px solid darkgray;
+  background-color: lightgray;
 }
