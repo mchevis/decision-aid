@@ -30,6 +30,7 @@ router.get("/project/:id", async (req, res, next) => {
     const attributes = await Attribute.findAll({
       where: { projectId: req.params.id },
       order: ["id"],
+      include: ["productAttributes"],
     });
     res.json(attributes);
   } catch (err) {

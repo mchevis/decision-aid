@@ -17,31 +17,51 @@ const ProductAttributes = ({ productId, projectId, productUrl }) => {
     setAttributes(attributes);
   }, []);
 
-  const total =
-    attributes.length > 0
-      ? attributes.reduce((total, attr) => {
-          if (total === "DESQUALIFIED") {
-            return total;
-          }
-          const prodAttr = productAttributes.find(
-            (pa) => pa.attributeId === attr.id
-          );
-          if (attr.criteriaType === "informational") {
+  const attributeRankings = attributes.map((attr) => {
+    return {
+      ...attr,
+      attrRanking: attr.productAttributes
+        .map((pa) => pa.value)
+        .sort((a, b) => {
+          if (attr.criteriaValue === "min") {
+            return Number(a) - Number(b);
+          } else if (attr.criteriaValue === "max") {
+            return Number(b) - Number(a);
+          } else {
             return 0;
           }
-          const weight = 5 - attr.priority;
-          if (attr.criteriaType === "lessThanOrEqualTo") {
-            if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
-              return total + weight;
-            } else {
-              return "DESQUALIFIED";
-            }
-          }
-          if (attr.criteriaType === "minMax") {
-            return total + 10;
-          }
-        }, 0)
-      : 0;
+        }),
+    };
+  });
+
+  const total = attributes.reduce((total, attr) => {
+    if (total === "DESQUALIFIED") {
+      return total;
+    }
+    const prodAttr = productAttributes.find((pa) => pa.attributeId === attr.id);
+    if (attr.criteriaType === "informational") {
+      return total;
+    }
+    const weight = 5 - attr.priority;
+    if (attr.criteriaType === "lessThanOrEqualTo") {
+      if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
+        return total + weight;
+      } else {
+        return "DESQUALIFIED";
+      }
+    }
+    if (attr.criteriaType === "minMax") {
+      const attrRanking = attributeRankings.find(
+        (att) => att.id === attr.id
+      ).attrRanking;
+      const idx =
+        attrRanking.findIndex(
+          (ar, idx) => Number(ar) === Number(prodAttr.value)
+        ) + 1;
+
+      return total + weight * (5 - idx);
+    }
+  }, 0);
 
   return (
     <div className="productAttributes--list">
