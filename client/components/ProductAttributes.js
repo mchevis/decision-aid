@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const ProductAttributes = ({ productId, projectId }) => {
+const ProductAttributes = ({ productId, projectId, productUrl }) => {
   const [productAttributes, setProductAttributes] = useState([]);
   const [attributes, setAttributes] = useState([]);
 
@@ -28,6 +28,10 @@ const ProductAttributes = ({ productId, projectId }) => {
           <div key={prodAttr.id} className="productAttribute">
             {attribute?.name === "Image" ? (
               <img src={prodAttr.value} className="productImage"></img>
+            ) : attribute?.name === "Name" ? (
+              <a href={productUrl} target="_blank">
+                {prodAttr.value}
+              </a>
             ) : (
               prodAttr.value
             )}

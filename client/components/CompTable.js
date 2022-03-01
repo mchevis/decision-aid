@@ -48,7 +48,11 @@ const CompTable = ({ projectId }) => {
         {products.map((product) => (
           <div key={product.id} className="productsList--productItem">
             <p className="productAttribute">{product.brand}</p>
-            <ProductAttributes productId={product.id} projectId={projectId} />
+            <ProductAttributes
+              productId={product.id}
+              projectId={projectId}
+              productUrl={product.url}
+            />
           </div>
         ))}
       </div>
