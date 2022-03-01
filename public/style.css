@@ -71,3 +71,8 @@ footer {
   text-align: center;
   font-size: small;
 }
+
+.productImage {
+  height: 100px;
+  width: auto;
+}

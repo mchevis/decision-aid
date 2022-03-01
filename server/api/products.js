@@ -23,3 +23,16 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+// GET /api/products/project/:id
+router.get("/project/:id", async (req, res, next) => {
+  try {
+    const products = await Product.findAll({
+      where: { projectId: req.params.id },
+      order: ["id"],
+    });
+    res.json(products);
+  } catch (err) {
+    next(err);
+  }
+});

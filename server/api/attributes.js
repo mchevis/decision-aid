@@ -23,3 +23,16 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+// GET /api/attributes/project/:id
+router.get("/project/:id", async (req, res, next) => {
+  try {
+    const attributes = await Attribute.findAll({
+      where: { projectId: req.params.id },
+      order: ["id"],
+    });
+    res.json(attributes);
+  } catch (err) {
+    next(err);
+  }
+});
