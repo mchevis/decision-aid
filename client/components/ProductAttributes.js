@@ -17,15 +17,43 @@ const ProductAttributes = ({ productId, projectId, productUrl }) => {
     setAttributes(attributes);
   }, []);
 
+  const total =
+    attributes.length > 0
+      ? attributes.reduce((total, attr) => {
+          if (total === "DESQUALIFIED") {
+            return total;
+          }
+          const prodAttr = productAttributes.find(
+            (pa) => pa.attributeId === attr.id
+          );
+          if (attr.criteriaType === "informational") {
+            return 0;
+          }
+          const weight = 5 - attr.priority;
+          if (attr.criteriaType === "lessThanOrEqualTo") {
+            if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
+              return total + weight;
+            } else {
+              return "DESQUALIFIED";
+            }
+          }
+          if (attr.criteriaType === "minMax") {
+            return total + 10;
+          }
+        }, 0)
+      : 0;
+
   return (
     <div className="productAttributes--list">
-      {productAttributes.map((prodAttr) => {
-        const attribute = attributes.find(
-          (attr) => attr.id === prodAttr.attributeId
-        );
+      {attributes.map((attribute) => {
+        const prodAttr =
+          productAttributes.find((pa) => attribute.id === pa.attributeId) || "";
 
         return (
-          <div key={prodAttr.id} className="productAttribute">
+          <div
+            key={attribute.id}
+            className={`productAttribute ${attribute?.name}`}
+          >
             {attribute?.name === "Image" ? (
               <img src={prodAttr.value} className="productImage"></img>
             ) : attribute?.name === "Name" ? (
@@ -38,6 +66,8 @@ const ProductAttributes = ({ productId, projectId, productUrl }) => {
           </div>
         );
       })}
+      <hr className="divider" />
+      <div className="total">{total}</div>
     </div>
   );
 };

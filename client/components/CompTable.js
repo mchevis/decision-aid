@@ -25,14 +25,12 @@ const CompTable = ({ projectId }) => {
     <div className="comp--products">
       <h2>Comparison Table</h2>
       <div className="products--list">
-        <div className="productsList--productItem">
-          <div className="productAttribute attributeName attributeName--Brand">
-            Brand
-          </div>
+        <div className="productsList--productItem attributes">
+          <div className="productAttribute attributeName Brand">Brand</div>
           {attributes.map((attribute) => (
             <div
               key={attribute.id}
-              className={`productAttribute attributeName attributeName--${attribute.name}`}
+              className={`productAttribute attributeName ${attribute.name}`}
             >
               <div>{attribute.name}</div>
               <div className={attribute.criteriaValue ? "criteria" : ""}>
@@ -44,6 +42,8 @@ const CompTable = ({ projectId }) => {
               </div>
             </div>
           ))}
+          <hr className="divider" />
+          <div className="total">Total</div>
         </div>
         {products.map((product) => (
           <div key={product.id} className="productsList--productItem">
