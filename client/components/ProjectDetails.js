@@ -33,21 +33,33 @@ const ProjectDetails = () => {
           </li>
         ))}
       </ul>
-      <h2>Attributes:</h2>
-      <ul>
-        {attributes.map((attribute) => (
-          <li key={attribute.id}>{attribute.name}</li>
-        ))}
-      </ul>
-      <h2>Products:</h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.id} {product.brand}
-            <ProductAttributes productId={product.id} projectId={project.id} />
-          </li>
-        ))}
-      </ul>
+      <div className="comp--table">
+        <div className="comp--products">
+          <h2>Products:</h2>
+          <div className="products--list">
+            <div className="productsList--productItem">
+              <div className="productAttribute">Brand</div>
+              {attributes.map((attribute) => (
+                <div
+                  key={attribute.id}
+                  className={`productAttribute attributeName--${attribute.name}`}
+                >
+                  {attribute.name}
+                </div>
+              ))}
+            </div>
+            {products.map((product) => (
+              <div key={product.id} className="productsList--productItem">
+                <p className="productAttribute">{product.brand}</p>
+                <ProductAttributes
+                  productId={product.id}
+                  projectId={project.id}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -18,26 +18,22 @@ const ProductAttributes = ({ productId, projectId }) => {
   }, []);
 
   return (
-    <div>
-      <h3>Product Attributes:</h3>
-      <ul>
-        {productAttributes.map((prodAttr) => {
-          const attribute = attributes.find(
-            (attr) => attr.id === prodAttr.attributeId
-          );
+    <div className="productAttributes--list">
+      {productAttributes.map((prodAttr) => {
+        const attribute = attributes.find(
+          (attr) => attr.id === prodAttr.attributeId
+        );
 
-          return (
-            <li key={prodAttr.id}>
-              {attribute?.name}:{" "}
-              {attribute?.name === "Image" ? (
-                <img src={prodAttr.value} className="productImage"></img>
-              ) : (
-                prodAttr.value
-              )}
-            </li>
-          );
-        })}
-      </ul>
+        return (
+          <div key={prodAttr.id} className="productAttribute">
+            {attribute?.name === "Image" ? (
+              <img src={prodAttr.value} className="productImage"></img>
+            ) : (
+              prodAttr.value
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
