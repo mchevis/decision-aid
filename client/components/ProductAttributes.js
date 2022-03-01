@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const ProductAttributes = ({ productId, projectId, productUrl }) => {
+const ProductAttributes = ({
+  productId,
+  projectId,
+  productUrl,
+  productSource,
+}) => {
   const [productAttributes, setProductAttributes] = useState([]);
   const [attributes, setAttributes] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(async () => {
     const { data: productAttributes } = await axios.get(
@@ -35,7 +43,7 @@ const ProductAttributes = ({ productId, projectId, productUrl }) => {
   });
 
   const total = attributes.reduce((total, attr) => {
-    if (total === "DESQUALIFIED") {
+    if (total === "DISQUALIFIED") {
       return total;
     }
     const prodAttr = productAttributes.find((pa) => pa.attributeId === attr.id);
@@ -47,7 +55,7 @@ const ProductAttributes = ({ productId, projectId, productUrl }) => {
       if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
         return total + weight;
       } else {
-        return "DESQUALIFIED";
+        return "DISQUALIFIED";
       }
     }
     if (attr.criteriaType === "minMax") {
@@ -65,6 +73,7 @@ const ProductAttributes = ({ productId, projectId, productUrl }) => {
 
   return (
     <div className="productAttributes--list">
+      <p className="productAttribute">{productSource}</p>
       {attributes.map((attribute) => {
         const prodAttr =
           productAttributes.find((pa) => attribute.id === pa.attributeId) || "";
@@ -88,6 +97,12 @@ const ProductAttributes = ({ productId, projectId, productUrl }) => {
       })}
       <hr className="divider" />
       <div className="total">{total}</div>
+      <button
+        className="product--edit"
+        onClick={() => navigate(`/product/${productId}`)}
+      >
+        Edit
+      </button>
     </div>
   );
 };

@@ -30,6 +30,7 @@ router.get("/product/:id", async (req, res, next) => {
     const productAttributes = await ProductAttribute.findAll({
       where: { productId: req.params.id },
       order: ["id"],
+      include: ["attribute"],
     });
     res.json(productAttributes);
   } catch (err) {
