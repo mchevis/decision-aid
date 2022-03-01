@@ -29,7 +29,11 @@ router.get("/project/:id", async (req, res, next) => {
   try {
     const attributes = await Attribute.findAll({
       where: { projectId: req.params.id },
-      order: ["id"],
+      order: [
+        ["criteriaType", "DESC"],
+        ["priority", "asc"],
+        ["name", "desc"],
+      ],
       include: ["productAttributes"],
     });
     res.json(attributes);
