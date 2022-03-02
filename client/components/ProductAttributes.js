@@ -47,9 +47,10 @@ const ProductAttributes = ({
       return total;
     }
     const prodAttr = productAttributes.find((pa) => pa.attributeId === attr.id);
-    if (attr.criteriaType === "informational") {
+    if (!prodAttr || attr.criteriaType === "informational") {
       return total;
     }
+
     const weight = attr.priority;
     if (attr.criteriaType === "lessThanOrEqualTo") {
       if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
@@ -59,11 +60,11 @@ const ProductAttributes = ({
       }
     }
     if (attr.criteriaType === "minMax") {
-      const attrRanking = attributeRankings.find(
+      const attrRanking = attributeRankings?.find(
         (att) => att.id === attr.id
       ).attrRanking;
       const idx =
-        attrRanking.findIndex((ar) => Number(ar) === Number(prodAttr.value)) +
+        attrRanking?.findIndex((ar) => Number(ar) === Number(prodAttr?.value)) +
         1;
 
       return total + weight * (5 - idx);

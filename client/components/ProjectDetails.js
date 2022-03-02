@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductAttributes from "./ProductAttributes";
 import CompTable from "./CompTable";
 
 const ProjectDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [project, setProject] = useState({});
 
   useEffect(async () => {
@@ -26,6 +27,9 @@ const ProjectDetails = () => {
           ))}
         </ul>
       </div>
+      <button onClick={() => navigate(`/${project.id}/createProduct`)}>
+        Add a Product
+      </button>
       <div className="comp--table">
         <CompTable projectId={project.id} />
       </div>

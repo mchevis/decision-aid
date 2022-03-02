@@ -24,28 +24,28 @@ async function seed() {
   const [airFryer1, airFryer2, airFryer3, bed1, bed2] = await Promise.all([
     Product.create({
       projectId: airFryer.id,
-      brand: "Wayfair",
+      source: "Wayfair",
       url: "https://www.wayfair.com/shop-product-type/pdp/instant-pot-8-qt-duo-crisp-pressure-cooker-istp1037.html",
       userRating: 2,
       userNotes: "Kind of like this one...",
     }),
     Product.create({
       projectId: airFryer.id,
-      brand: "Amazon",
+      source: "Amazon",
       url: "https://www.amazon.com/AmazonBasics-Quart-Compact-Multi-Functional-Digital/dp/B07VZ65M7H/ref=sr_1_1_sspa?crid=LPKCLLOPRJ20",
       userRating: 4,
       userNotes: "Meh",
     }),
     Product.create({
       projectId: airFryer.id,
-      brand: "Wayfair",
+      source: "Wayfair",
       url: "https://www.wayfair.com/kitchen-tabletop/pdp/cuisinart-air-fryer-toaster-oven-cui3490.html",
       userRating: 5,
       userNotes: "Love the toaster oven!",
     }),
     Product.create({
       projectId: bed.id,
-      brand: "Wayfair",
+      source: "Wayfair",
       url: "https://www.wayfair.com/furniture/pdp/lark-manor-landyn-39-steel-platform-bed-w004764146.html",
       userRating: 4,
       userNotes: "Pretty!!",
@@ -53,7 +53,7 @@ async function seed() {
     }),
     Product.create({
       projectId: bed.id,
-      brand: "West Elm",
+      source: "West Elm",
       url: "https://www.westelm.com/products/ida-bed-white-h6911/?pkey=s~bed~245",
       userRating: 5,
       userNotes: "Just WOW!",

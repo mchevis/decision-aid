@@ -2,7 +2,7 @@ const db = require("../db");
 const { STRING, DECIMAL, TEXT, BOOLEAN } = db.Sequelize.DataTypes;
 
 const Product = db.define("product", {
-  brand: {
+  source: {
     type: STRING,
     allowNull: false,
     validate: {

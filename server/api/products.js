@@ -47,3 +47,13 @@ router.put("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+// POST /api/products
+router.post("/", async (req, res, next) => {
+  try {
+    const product = await Product.create(req.body);
+    res.json(product);
+  } catch (err) {
+    next(err);
+  }
+});

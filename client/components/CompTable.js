@@ -26,7 +26,7 @@ const CompTable = ({ projectId }) => {
       <h2>Comparison Table</h2>
       <div className="products--list">
         <div className="productsList--productItem attributes">
-          <div className="productAttribute attributeName Brand">Source</div>
+          <div className="productAttribute attributeName Source">Source</div>
           {attributes.map((attribute) => (
             <div
               key={attribute.id}
@@ -50,7 +50,7 @@ const CompTable = ({ projectId }) => {
               productId={product.id}
               projectId={projectId}
               productUrl={product.url}
-              productSource={product.brand}
+              productSource={product.source}
             />
           </div>
         ))}

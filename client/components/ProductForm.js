@@ -36,7 +36,7 @@ const ProductForm = () => {
   );
 
   const onSubmit = async (data, e) => {
-    const productBody = { brand: data.source, url: data.url };
+    const productBody = { source: data.source, url: data.url };
     const attributes = Object.entries(data)
       .filter((el) => el[0] !== "source" && el[0] !== "url")
       .map((el) => [...el[0].split("-"), el[1]]);
@@ -66,7 +66,7 @@ const ProductForm = () => {
         className="product--form"
       >
         <label>Source:</label>
-        <input defaultValue={product.brand} {...register("source")} />
+        <input defaultValue={product.source} {...register("source")} />
         {errors.exampleRequired && <span>This field is required</span>}
         <label>URL:</label>
         <input defaultValue={product.url} {...register("url")} />
