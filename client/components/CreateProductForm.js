@@ -44,7 +44,9 @@ const CreateProductForm = () => {
         {errors.url && <span>This field is required</span>}
         <input type="submit" disabled={isSubmitting} />
       </form>
-      <button onClick={() => navigate(-1)}>Cancel</button>
+      <div>
+        <button onClick={() => navigate(-1)}>Cancel</button>
+      </div>
     </div>
   );
 };

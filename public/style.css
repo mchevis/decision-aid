@@ -209,3 +209,20 @@ footer {
   width: 60vw;
   padding: 0.5em;
 }
+
+.product--create--page {
+  margin: 2em;
+}
+
+.product--create--page * {
+  margin: 1em;
+  text-align: center;
+}
+
+.product--create--page input {
+  padding: 0.25em;
+}
+
+.product--create--page button {
+  text-align: center;
+}

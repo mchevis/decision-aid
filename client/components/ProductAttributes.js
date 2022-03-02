@@ -54,7 +54,7 @@ const ProductAttributes = ({
     const weight = attr.priority;
     if (attr.criteriaType === "lessThanOrEqualTo") {
       if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
-        return total + weight;
+        return total + weight * 4;
       } else {
         return "DISQUALIFIED";
       }
