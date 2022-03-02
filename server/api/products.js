@@ -17,8 +17,8 @@ router.get("/", async (req, res, next) => {
 // GET /api/products/:id
 router.get("/:id", async (req, res, next) => {
   try {
-    const products = await Product.findByPk(req.params.id);
-    res.json(products);
+    const product = await Product.findByPk(req.params.id);
+    res.json(product);
   } catch (err) {
     next(err);
   }
@@ -32,6 +32,17 @@ router.get("/project/:id", async (req, res, next) => {
       order: ["id"],
     });
     res.json(products);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PUT /api/products/:id
+router.put("/:id", async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.id);
+    await product.update(req.body);
+    res.sendStatus(202);
   } catch (err) {
     next(err);
   }

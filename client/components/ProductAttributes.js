@@ -50,7 +50,7 @@ const ProductAttributes = ({
     if (attr.criteriaType === "informational") {
       return total;
     }
-    const weight = 5 - attr.priority;
+    const weight = attr.priority;
     if (attr.criteriaType === "lessThanOrEqualTo") {
       if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
         return total + weight;
@@ -63,9 +63,8 @@ const ProductAttributes = ({
         (att) => att.id === attr.id
       ).attrRanking;
       const idx =
-        attrRanking.findIndex(
-          (ar, idx) => Number(ar) === Number(prodAttr.value)
-        ) + 1;
+        attrRanking.findIndex((ar) => Number(ar) === Number(prodAttr.value)) +
+        1;
 
       return total + weight * (5 - idx);
     }

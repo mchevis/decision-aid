@@ -37,8 +37,7 @@ const CompTable = ({ projectId }) => {
                 {attribute.criteriaValue}
               </div>
               <div className={attribute.priority ? "priority" : ""}>
-                {attribute.priority || attribute.priority === 0 ? "P" : ""}
-                {attribute.priority}
+                {attribute.priority ? attribute.priority : ""}
               </div>
             </div>
           ))}

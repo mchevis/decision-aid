@@ -198,3 +198,14 @@ footer {
 .product--form--attribute input {
   width: 50%;
 }
+
+.product--edit--page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product--edit--page button {
+  width: 60vw;
+  padding: 0.5em;
+}

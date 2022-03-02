@@ -17,8 +17,8 @@ router.get("/", async (req, res, next) => {
 // GET /api/productAttributes/:id
 router.get("/:id", async (req, res, next) => {
   try {
-    const productAttributes = await ProductAttribute.findByPk(req.params.id);
-    res.json(productAttributes);
+    const productAttribute = await ProductAttribute.findByPk(req.params.id);
+    res.json(productAttribute);
   } catch (err) {
     next(err);
   }
@@ -33,6 +33,17 @@ router.get("/product/:id", async (req, res, next) => {
       include: ["attribute"],
     });
     res.json(productAttributes);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PUT /api/productAttributes/:id
+router.put("/:id", async (req, res, next) => {
+  try {
+    const productAttribute = await ProductAttribute.findByPk(req.params.id);
+    await productAttribute.update(req.body);
+    res.sendStatus(202);
   } catch (err) {
     next(err);
   }
