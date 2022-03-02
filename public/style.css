@@ -171,3 +171,30 @@ footer {
 .product--edit {
   margin: 1em;
 }
+
+.product--form {
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+  padding: 2em;
+  width: 70vw;
+}
+
+.product--form > * {
+  margin: 1em;
+}
+
+.product--form input {
+  padding: 0.5em;
+}
+
+.product--form--attribute {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 1em;
+}
+
+.product--form--attribute input {
+  width: 50%;
+}
