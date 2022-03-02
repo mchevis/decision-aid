@@ -47,7 +47,7 @@ const ProductAttributes = ({
       return total;
     }
     const prodAttr = productAttributes.find((pa) => pa.attributeId === attr.id);
-    if (!prodAttr || attr.criteriaType === "informational") {
+    if (!prodAttr || !prodAttr.value || attr.criteriaType === "informational") {
       return total;
     }
 
@@ -86,7 +86,12 @@ const ProductAttributes = ({
             {attribute?.name === "Image" ? (
               <img src={prodAttr.value} className="productImage"></img>
             ) : attribute?.name === "Name" ? (
-              <a href={productUrl} target="_blank">
+              <a
+                href={
+                  productUrl.startsWith("http") ? productUrl : `//${productUrl}`
+                }
+                target="_blank"
+              >
                 {prodAttr.value}
               </a>
             ) : (

@@ -48,3 +48,13 @@ router.put("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+// POST /api/productAttributes
+router.post("/", async (req, res, next) => {
+  try {
+    const productAttribute = await ProductAttribute.create(req.body);
+    res.json(productAttribute);
+  } catch (err) {
+    next(err);
+  }
+});
