@@ -20,13 +20,14 @@ const CreateProductForm = () => {
     [isSubmitSuccessful]
   );
 
+  const scrapingSources = ["Amazon", "Wayfair"];
+
   const onSubmit = async (data, e) => {
     const { data: product } = await axios.post(`/api/products`, {
       projectId,
       ...data,
     });
 
-    const scrapingSources = ["Amazon", "Wayfair"];
     if (scrapingSources.find((source) => source === data.source)) {
       await axios.post("/api/productAttributes/scrape", {
         productId: product.id,
@@ -62,7 +63,8 @@ const CreateProductForm = () => {
             <option value={"Wayfair"}>Wayfair</option>
             <option value={"West Elm"}>West Elm</option>
           </select>
-          {watchSource[0] === "West Elm" ? (
+          {watchSource[0] &&
+          !scrapingSources.find((s) => s === watchSource[0]) ? (
             <small>
               FYI: we can't fetch data from {watchSource} automatically...you
               can still enter data manually!
