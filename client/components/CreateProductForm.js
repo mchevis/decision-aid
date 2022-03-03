@@ -26,7 +26,8 @@ const CreateProductForm = () => {
       ...data,
     });
 
-    if (data.source === "Amazon") {
+    const scrapingSources = ["Amazon", "Wayfair"];
+    if (scrapingSources.find((source) => source === data.source)) {
       await axios.post("/api/productAttributes/scrape", {
         productId: product.id,
         source: data.source,
@@ -40,7 +41,7 @@ const CreateProductForm = () => {
 
   return (
     <div className="product--create--page">
-      <div>{isSubmitting ? "Fetching product info..." : ""}</div>
+      <div>{isSubmitting ? "Please wait. Fetching product info..." : ""}</div>
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
         className="product--create--form"
@@ -59,9 +60,15 @@ const CreateProductForm = () => {
           <option value={"West Elm"}>West Elm</option>
         </select>
         {errors.source && <span>This field is required</span>}
-        <label>URL:</label>
-        <input defaultValue={""} {...register("url", { required: true })} />
-        {errors.url && <span>This field is required</span>}
+        <div className="urlField">
+          <label>URL:</label>
+          <small>
+            For accurate results, please select all product options (e.g. color,
+            size) on the site before copying the URL
+          </small>
+          <input defaultValue={""} {...register("url", { required: true })} />
+          {errors.url && <span>This field is required</span>}
+        </div>
         <input type="submit" disabled={isSubmitting} />
       </form>
       <div>

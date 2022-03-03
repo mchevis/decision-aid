@@ -3,7 +3,7 @@ const {
   models: { ProductAttribute, Product, Attribute },
 } = require("../db");
 module.exports = router;
-const { amazonScrape } = require("./scraper");
+const { amazonScrape, wayfairScrape } = require("./scraper");
 
 // GET /api/productAttributes
 router.get("/", async (req, res, next) => {
@@ -68,6 +68,8 @@ router.post("/scrape", async (req, res, next) => {
       let scrapeResult;
       if (req.body.source === "Amazon") {
         scrapeResult = await amazonScrape(product.url);
+      } else if (req.body.source === "Wayfair") {
+        scrapeResult = await wayfairScrape(product.url);
       }
 
       if (scrapeResult) {

@@ -226,3 +226,8 @@ footer {
 .product--create--page button {
   text-align: center;
 }
+
+.product--create--page .urlField {
+  display: flex;
+  flex-direction: column;
+}
