@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductAttributes from "./ProductAttributes";
 import CompTable from "./CompTable";
+import { Grid } from "@mui/material";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -17,16 +18,7 @@ const ProjectDetails = () => {
   return (
     <div className="project-details--page">
       <h1>Project Details</h1>
-      <div className="project--info">
-        <h2>Info</h2>
-        <ul>
-          {Object.entries(project).map((projectProp) => (
-            <li key={projectProp[0]}>
-              {projectProp[0]}: {projectProp[1]}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="project--info"></div>
       <button onClick={() => navigate(`/${project.id}/createProduct`)}>
         Add a Product
       </button>

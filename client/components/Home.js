@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ProjectCard from "./ProjectCard";
+import { Grid } from "@mui/material";
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
@@ -12,17 +13,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Decision Aid</h1>
-      <ul>
-        {projects.map((project) => (
-          <li key={project.id}>
-            <Link to={`/project/${project.id}`}>{project.name}</Link>
-            <ProjectCard id={project.id} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Grid container spacing={2}>
+      <Grid item xs={2} />
+      {projects.map((project) => (
+        <Grid item xs={12} sm={3} key={project.id}>
+          <ProjectCard id={project.id} />
+        </Grid>
+      ))}
+      <Grid item xs={2} />
+    </Grid>
   );
 };
 
