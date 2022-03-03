@@ -51,7 +51,7 @@ async function amazonScrape(URL) {
 }
 
 async function wayfairScrape(URL) {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   try {
     await page.setUserAgent(

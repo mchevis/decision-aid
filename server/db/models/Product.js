@@ -10,7 +10,7 @@ const Product = db.define("product", {
     },
   },
   url: {
-    type: STRING,
+    type: TEXT,
     allowNull: false,
     validate: {
       notEmpty: true,
