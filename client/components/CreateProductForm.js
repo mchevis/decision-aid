@@ -39,6 +39,8 @@ const CreateProductForm = () => {
 
   const onError = (errors, e) => console.log(errors, e);
 
+  const watchSource = watch(["source"]);
+
   return (
     <div className="product--create--page">
       <div>{isSubmitting ? "Please wait. Fetching product info..." : ""}</div>
@@ -46,21 +48,31 @@ const CreateProductForm = () => {
         onSubmit={handleSubmit(onSubmit, onError)}
         className="product--create--form"
       >
-        <label>Source:</label>
-        <select
-          name="Priority"
-          defaultValue={0}
-          {...register("source", { required: true })}
-        >
-          <option value={0} disabled>
-            Select a source
-          </option>
-          <option value={"Amazon"}>Amazon</option>
-          <option value={"Wayfair"}>Wayfair</option>
-          <option value={"West Elm"}>West Elm</option>
-        </select>
-        {errors.source && <span>This field is required</span>}
-        <div className="urlField">
+        <div className="fieldWithNote">
+          <label>Source:</label>
+          <select
+            name="Source"
+            defaultValue={0}
+            {...register("source", { required: true })}
+          >
+            <option value={0} disabled>
+              Select a source
+            </option>
+            <option value={"Amazon"}>Amazon</option>
+            <option value={"Wayfair"}>Wayfair</option>
+            <option value={"West Elm"}>West Elm</option>
+          </select>
+          {watchSource[0] === "West Elm" ? (
+            <small>
+              FYI: we can't fetch data from {watchSource} automatically...you
+              can still enter data manually!
+            </small>
+          ) : (
+            ""
+          )}
+          {errors.source && <span>This field is required</span>}
+        </div>
+        <div className="fieldWithNote">
           <label>URL:</label>
           <small>
             For accurate results, please select all product options (e.g. color,

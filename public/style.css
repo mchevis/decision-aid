@@ -219,6 +219,12 @@ footer {
   text-align: center;
 }
 
+.product--create--form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .product--create--page input {
   padding: 0.25em;
 }
@@ -227,7 +233,10 @@ footer {
   text-align: center;
 }
 
-.product--create--page .urlField {
+.product--create--page .fieldWithNote {
   display: flex;
   flex-direction: column;
+  width: 50vw;
+  align-items: stretch;
+  text-align: center;
 }
