@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import ProductAttributes from "./ProductAttributes";
+import ProductCard from "./ProductCard";
 
 const CompTable = ({ projectId }) => {
   const [attributes, setAttributes] = useState([]);
@@ -45,7 +45,7 @@ const CompTable = ({ projectId }) => {
         </div>
         {products.map((product) => (
           <div key={product.id} className="productsList--productItem">
-            <ProductAttributes
+            <ProductCard
               productId={product.id}
               projectId={projectId}
               productUrl={product.url}
