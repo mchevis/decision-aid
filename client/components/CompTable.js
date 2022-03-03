@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./ProductCard";
+import AttributesBar from "./AttributesBar";
+import { Grid } from "@mui/material";
 
 const CompTable = ({ projectId }) => {
   const [attributes, setAttributes] = useState([]);
@@ -24,7 +26,30 @@ const CompTable = ({ projectId }) => {
   return (
     <div className="comp--products">
       <div className="products--list">
-        <div className="productsList--productItem attributes">
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
+            <AttributesBar />
+          </Grid>
+          {products.map((product) => (
+            <Grid item xs={3} key={product.id}>
+              <ProductCard
+                productId={product.id}
+                projectId={projectId}
+                productUrl={product.url}
+                productSource={product.source}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </div>
+    </div>
+  );
+};
+
+export default CompTable;
+
+{
+  /* <div className="productsList--productItem attributes">
           <div className="productAttribute attributeName Source">Source</div>
           {attributes.map((attribute) => (
             <div
@@ -42,20 +67,5 @@ const CompTable = ({ projectId }) => {
           ))}
           <hr className="divider" />
           <div className="total">Total</div>
-        </div>
-        {products.map((product) => (
-          <div key={product.id} className="productsList--productItem">
-            <ProductCard
-              productId={product.id}
-              projectId={projectId}
-              productUrl={product.url}
-              productSource={product.source}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default CompTable;
+        </div> */
+}

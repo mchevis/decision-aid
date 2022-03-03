@@ -85,7 +85,7 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
         <Grid
           container
           direction="column"
-          spacing={2}
+          spacing={3}
           alignItems="center"
           maxWidth={300}
         >
@@ -152,22 +152,29 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
               stars
             </Typography>
           </Grid>
-          <Divider variant="middle" sx={{ width: 200, pt: 2 }} />
+          <Divider variant="middle" sx={{ width: 300, pt: 2 }} />
           <Grid item xs={2}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body1" color="text.secondary">
               {total}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={() => navigate(`/product/${productId}`)}>
+      <CardActions
+        sx={{ display: "flex", justifyContent: "space-between", m: 3 }}
+      >
+        <Button
+          size="small"
+          onClick={() => navigate(`/product/${productId}`)}
+          variant="contained"
+        >
           Edit
         </Button>
         <Button
           size="small"
           href={productUrl.startsWith("http") ? productUrl : `//${productUrl}`}
           target="_blank"
+          variant="contained"
         >
           Go To Product Website
         </Button>
