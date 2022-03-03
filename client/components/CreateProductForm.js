@@ -40,12 +40,24 @@ const CreateProductForm = () => {
 
   return (
     <div className="product--create--page">
+      <div>{isSubmitting ? "Fetching product info..." : ""}</div>
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
         className="product--create--form"
       >
         <label>Source:</label>
-        <input defaultValue={""} {...register("source", { required: true })} />
+        <select
+          name="Priority"
+          defaultValue={0}
+          {...register("source", { required: true })}
+        >
+          <option value={0} disabled>
+            Select a source
+          </option>
+          <option value={"Amazon"}>Amazon</option>
+          <option value={"Wayfair"}>Wayfair</option>
+          <option value={"West Elm"}>West Elm</option>
+        </select>
         {errors.source && <span>This field is required</span>}
         <label>URL:</label>
         <input defaultValue={""} {...register("url", { required: true })} />

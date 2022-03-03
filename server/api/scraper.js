@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 
-async function scrape(URL) {
-  const browser = await puppeteer.launch({ headless: false });
+async function amazonScrape(URL) {
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   try {
     await page.setUserAgent(
@@ -56,7 +56,7 @@ async function scrape(URL) {
   }
 }
 
-module.exports = scrape;
+module.exports = { amazonScrape };
 
 //with extra values
 // const result = {
