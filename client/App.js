@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Grid container direction="column">
+        <Grid container direction="column" spacing={3}>
           <Grid item xs={1}>
             <Navbar />
           </Grid>
@@ -20,7 +20,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Home />} />
-              <Route path="/project/:id" element={<ProjectDetails />} />
+              <Route path="/projects/:id" element={<ProjectDetails />} />
               <Route path="/product/:id" element={<ProductForm />} />
               <Route
                 path="/:projectId/createProduct"
