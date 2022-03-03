@@ -23,7 +23,6 @@ const CompTable = ({ projectId }) => {
 
   return (
     <div className="comp--products">
-      <h2>Comparison Table</h2>
       <div className="products--list">
         <div className="productsList--productItem attributes">
           <div className="productAttribute attributeName Source">Source</div>
