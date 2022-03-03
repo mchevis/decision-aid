@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { ProductAttribute, Product, Project },
+  models: { ProductAttribute, Product, Attribute },
 } = require("../db");
 module.exports = router;
 const scrape = require("./scraper");
@@ -63,12 +63,15 @@ router.post("/", async (req, res, next) => {
 // POST /api/productAttributes/scrape body: {productId, source}
 router.post("/scrape", async (req, res, next) => {
   try {
-    const product = Product.findByPk(req.body.productId);
+    console.log("REQ BODY: ", req.body);
+    const product = await Product.findByPk(req.body.productId);
+    console.log("PRODUCT: ", product);
     if (product.url) {
       let scrapeResult;
       if (req.body.source === "Amazon") {
-        scrapeResult = scraper(url);
+        scrapeResult = await scrape(product.url);
       }
+      console.log("SCRAPER RESULT: ", scrapeResult);
 
       if (scrapeResult) {
         attributes = (
