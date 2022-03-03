@@ -20,6 +20,7 @@
     "babel-loader": "^8.2.3",
     "express": "^4.17.3",
     "pg": "^8.7.3",
+    "puppeteer": "^13.4.1",
     "react-hook-form": "^7.27.1",
     "sequelize": "^6.17.0"
   },

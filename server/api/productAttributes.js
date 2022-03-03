@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const {
-  models: { ProductAttribute },
+  models: { ProductAttribute, Product, Project },
 } = require("../db");
 module.exports = router;
+const scrape = require("./scraper");
 
 // GET /api/productAttributes
 router.get("/", async (req, res, next) => {
@@ -54,6 +55,44 @@ router.post("/", async (req, res, next) => {
   try {
     const productAttribute = await ProductAttribute.create(req.body);
     res.json(productAttribute);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/productAttributes/scrape body: {productId, source}
+router.post("/scrape", async (req, res, next) => {
+  try {
+    const product = Product.findByPk(req.body.productId);
+    if (product.url) {
+      let scrapeResult;
+      if (req.body.source === "Amazon") {
+        scrapeResult = scraper(url);
+      }
+
+      if (scrapeResult) {
+        attributes = (
+          await Attribute.findAll({
+            where: { projectId: product.projectId },
+          })
+        ).filter((att) =>
+          Object.keys(scrapeResult).find(
+            (scrAttr) => scrAttr === att.name.toLowerCase()
+          )
+        );
+
+        await Promise.all(
+          attributes.map((attribute) =>
+            ProductAttribute.create({
+              productId: req.body.productId,
+              attributeId: attribute.id,
+              value: scrapeResult[attribute.name.toLowerCase()],
+            })
+          )
+        );
+      }
+    }
+    res.sendStatus(202);
   } catch (err) {
     next(err);
   }

@@ -25,6 +25,14 @@ const CreateProductForm = () => {
       projectId,
       ...data,
     });
+
+    if (data.source === "Amazon") {
+      await axios.post("/api/productAttributes/scrape", {
+        productId: product.id,
+        source: data.source,
+      });
+    }
+
     navigate(-1);
   };
 
