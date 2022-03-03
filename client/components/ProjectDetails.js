@@ -46,6 +46,7 @@ const ProjectDetails = () => {
         </Typography>
         <Button
           size="small"
+          variant="outlined"
           onClick={() => navigate(`/${project.id}/createProduct`)}
         >
           ADD PRODUCT
