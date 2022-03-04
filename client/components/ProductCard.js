@@ -6,11 +6,8 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardMedia,
   Button,
   Typography,
-  capitalize,
-  Avatar,
   Box,
   Divider,
 } from "@mui/material";
@@ -81,16 +78,22 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
   }, 0);
 
   return (
-    <Card sx={{ maxWidth: 350 }}>
-      <CardContent
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Grid container direction="column" spacing={3} alignItems="center">
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <CardContent>
+        <Grid
+          container
+          direction="column"
+          spacing={3}
+          alignItems="center"
+          justifyContent="center"
+        >
           <Grid item xs={3}>
             <Box
               component="img"
@@ -105,7 +108,6 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
           <Grid item xs={2}>
             <Box
               sx={{
-                maxWidth: 250,
                 height: 48,
               }}
             >
@@ -120,6 +122,8 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
                   overflow: "hidden",
                   WebkitBoxOrient: "vertical",
                   WebkitLineClamp: 2,
+                  pl: 3,
+                  pr: 3,
                 }}
               >
                 {
@@ -155,7 +159,9 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
               stars
             </Typography>
           </Grid>
-          <Divider variant="middle" sx={{ width: 300, pt: 2 }} />
+          <Grid item sx={{ width: "100%", pt: 2 }} textAlign={"center"}>
+            <Divider variant="middle" />
+          </Grid>
           <Grid item xs={2}>
             <Typography variant="body1" color="text.secondary">
               {total}
@@ -163,72 +169,34 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          m: 2.5,
-        }}
-      >
-        <Button
-          size="small"
-          onClick={() => navigate(`/product/${productId}`)}
-          variant="contained"
-        >
-          Edit
-        </Button>
-        <Button
-          size="small"
-          href={productUrl.startsWith("http") ? productUrl : `//${productUrl}`}
-          target="_blank"
-          variant="contained"
-        >
-          View Product
-          <OpenInNewIcon fontSize={"small"} />
-        </Button>
+      <CardActions>
+        <Grid container spacing={1} sx={{ mb: 2 }}>
+          <Grid item>
+            <Button
+              size="small"
+              onClick={() => navigate(`/product/${productId}`)}
+              variant="contained"
+            >
+              Edit
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              size="small"
+              href={
+                productUrl.startsWith("http") ? productUrl : `//${productUrl}`
+              }
+              target="_blank"
+              variant="contained"
+            >
+              View Product
+              <OpenInNewIcon fontSize={"small"} />
+            </Button>
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );
 };
 
 export default ProductCard;
-
-// return (
-//   <div className="productAttributes--list">
-//     <p className="productAttribute">{productSource}</p>
-//     {attributes.map((attribute) => {
-//       const prodAttr =
-//         productAttributes.find((pa) => attribute.id === pa.attributeId) || "";
-
-//       return (
-//         <div
-//           key={attribute.id}
-//           className={`productAttribute ${attribute?.name}`}
-//         >
-//           {attribute?.name === "Image" ? (
-//             <img src={prodAttr.value} className="productImage"></img>
-//           ) : attribute?.name === "Name" ? (
-//             <a
-//               href={
-//                 productUrl.startsWith("http") ? productUrl : `//${productUrl}`
-//               }
-//               target="_blank"
-//             >
-//               {prodAttr.value}
-//             </a>
-//           ) : (
-//             prodAttr.value
-//           )}
-//         </div>
-//       );
-//     })}
-//     <hr className="divider" />
-//     <div className="total">{total}</div>
-//     <button
-//       className="product--edit"
-//       onClick={() => navigate(`/product/${productId}`)}
-//     >
-//       Edit
-//     </button>
-//   </div>
-// );

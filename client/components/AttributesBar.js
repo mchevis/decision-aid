@@ -15,16 +15,16 @@ import {
 
 const AttributesBar = ({ attributes }) => {
   return (
-    <Card>
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "left",
+      }}
+    >
       <CardContent>
-        <Grid
-          container
-          direction="column"
-          spacing={3}
-          alignItems="left"
-          maxWidth={300}
-          minWidth={150}
-        >
+        <Grid container direction="column" spacing={3} alignItems="left">
           <Grid item xs={3}>
             <Box sx={{ height: 150 }}>
               <Typography
@@ -37,7 +37,6 @@ const AttributesBar = ({ attributes }) => {
           <Grid item xs={2}>
             <Box
               sx={{
-                maxWidth: 250,
                 height: 48 + 5.6,
               }}
             >
@@ -120,7 +119,9 @@ const AttributesBar = ({ attributes }) => {
               </Box>
             </Grid>
           </Grid>
-          <Divider variant="middle" sx={{ width: 180, pt: 2 }} />
+          <Grid item sx={{ width: "100%", pt: 2 }} textAlign={"center"}>
+            <Divider variant="middle" />
+          </Grid>
           <Grid item xs={2}>
             <Typography variant="body1" color="text.secondary">
               Total
@@ -128,14 +129,19 @@ const AttributesBar = ({ attributes }) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions sx={{ display: "flex", justifyContent: "center", m: 2.5 }}>
-        <Button
-          size="small"
-          //   onClick={() => navigate(`/product/${productId}`)}
-          variant="contained"
-        >
-          Edit
-        </Button>
+      <CardActions>
+        <Grid container spacing={0} sx={{ mb: 2 }} justifyContent={"center"}>
+          <Grid item xs={12}>
+            <Button
+              size="small"
+              // onClick={() => navigate(`/product/${productId}`)}
+              variant="contained"
+              sx={{ width: "100%" }}
+            >
+              Edit
+            </Button>
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );

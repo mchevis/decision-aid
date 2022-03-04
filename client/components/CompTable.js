@@ -27,10 +27,10 @@ const CompTable = ({ projectId }) => {
     <div className="comp--products">
       <div className="products--list">
         <Grid container spacing={3}>
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={3} md={2}>
             <AttributesBar attributes={attributes} />
           </Grid>
-          <Grid item xs={10} container spacing={2}>
+          <Grid item xs={12} sm={9} md={10} container spacing={2}>
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
                 <ProductCard
