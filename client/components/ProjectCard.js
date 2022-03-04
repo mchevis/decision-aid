@@ -22,7 +22,7 @@ const ProjectCard = ({ id }) => {
   }, []);
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {capitalize(project.status || "")}

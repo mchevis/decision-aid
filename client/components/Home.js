@@ -14,13 +14,15 @@ const Home = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={2} />
-      {projects.map((project) => (
-        <Grid item xs={12} sm={3} key={project.id}>
-          <ProjectCard id={project.id} />
-        </Grid>
-      ))}
-      <Grid item xs={2} />
+      <Grid item xs={1} />
+      <Grid item xs={10} container spacing={3}>
+        {projects.map((project) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={project.id}>
+            <ProjectCard id={project.id} />
+          </Grid>
+        ))}
+      </Grid>
+      <Grid item xs={1} />
     </Grid>
   );
 };
