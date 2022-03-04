@@ -17,16 +17,20 @@ const App = () => {
             <Navbar />
           </Grid>
           <Grid item container xs={10} sx={{ minHeight: "100vh" }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Home />} />
-              <Route path="/projects/:id" element={<ProjectDetails />} />
-              <Route path="/product/:id" element={<ProductForm />} />
-              <Route
-                path="/:projectId/createProduct"
-                element={<CreateProductForm />}
-              />
-            </Routes>
+            <Grid item xs={0.5} />
+            <Grid item xs={11}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<Home />} />
+                <Route path="/projects/:id" element={<ProjectDetails />} />
+                <Route path="/product/:id" element={<ProductForm />} />
+                <Route
+                  path="/:projectId/createProduct"
+                  element={<CreateProductForm />}
+                />
+              </Routes>
+            </Grid>
+            <Grid item xs={0.5} />
           </Grid>
           <Grid item xs={1}>
             <Footer />

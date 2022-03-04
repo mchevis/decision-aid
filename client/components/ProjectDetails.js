@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ProductAttributes from "./ProductAttributes";
 import CompTable from "./CompTable";
-import { Grid } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  capitalize,
+} from "@mui/material";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -16,16 +24,36 @@ const ProjectDetails = () => {
   }, []);
 
   return (
-    <div className="project-details--page">
-      <h1>Project Details</h1>
-      <div className="project--info"></div>
-      <button onClick={() => navigate(`/${project.id}/createProduct`)}>
-        Add a Product
-      </button>
-      <div className="comp--table">
+    <Grid container direction="column" spacing={3}>
+      <Grid item xs={2} container direction="column" spacing={1}>
+        <Grid item>
+          <Typography variant="h4" component="div">
+            Project Details
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="body2">
+            Name: {project.name}
+            <br />
+            Status: {project.status}
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={10}>
+        <Typography variant="h4" component="div">
+          Comparison Table
+        </Typography>
+        <Button
+          size="small"
+          variant="outlined"
+          onClick={() => navigate(`/${project.id}/createProduct`)}
+          sx={{ m: 2 }}
+        >
+          ADD PRODUCT
+        </Button>
         <CompTable projectId={project.id} />
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
