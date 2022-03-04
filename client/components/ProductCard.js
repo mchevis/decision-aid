@@ -14,6 +14,7 @@ import {
   Box,
   Divider,
 } from "@mui/material";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
   const [productAttributes, setProductAttributes] = useState([]);
@@ -182,7 +183,8 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
           target="_blank"
           variant="contained"
         >
-          Go To Product Website
+          View Product
+          <OpenInNewIcon fontSize={"small"} />
         </Button>
       </CardActions>
     </Card>

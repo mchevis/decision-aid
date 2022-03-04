@@ -26,13 +26,13 @@ const CompTable = ({ projectId }) => {
   return (
     <div className="comp--products">
       <div className="products--list">
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           <Grid item xs={2}>
             <AttributesBar />
           </Grid>
           <Grid item xs={10} container spacing={2}>
             {products.map((product) => (
-              <Grid item xs={3} key={product.id}>
+              <Grid item xs={4} key={product.id}>
                 <ProductCard
                   productId={product.id}
                   projectId={projectId}
