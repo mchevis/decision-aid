@@ -85,14 +85,14 @@ async function seed() {
       name: "Price",
       criteriaType: "minMax",
       criteriaValue: "min",
-      priority: 5,
+      priority: "high",
     }),
     Attribute.create({
       projectId: airFryer.id,
       name: "Ratings",
       criteriaType: "minMax",
       criteriaValue: "max",
-      priority: 4,
+      priority: "medium",
     }),
     //Bed
     Attribute.create({
@@ -110,7 +110,7 @@ async function seed() {
       name: "Price",
       criteriaType: "lessThanOrEqualTo",
       criteriaValue: "1000",
-      priority: 5,
+      priority: "high",
       isRequired: true,
     }),
     Attribute.create({
@@ -118,7 +118,7 @@ async function seed() {
       name: "Ratings",
       criteriaType: "minMax",
       criteriaValue: "max",
-      priority: 4,
+      priority: "low",
     }),
   ]);
 

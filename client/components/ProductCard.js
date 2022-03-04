@@ -57,7 +57,10 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
       return total;
     }
 
-    const weight = attr.priority;
+    //setting weight
+    const priorities = ["low", "medium", "high"];
+    const weight = priorities.findIndex((p) => p === attr.priority) + 1 || 0;
+
     if (attr.criteriaType === "lessThanOrEqualTo") {
       if (Number(prodAttr.value) <= Number(attr.criteriaValue)) {
         return total + weight * 4;

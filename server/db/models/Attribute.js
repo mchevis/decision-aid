@@ -26,7 +26,7 @@ const Attribute = db.define("attribute", {
     type: STRING,
   },
   priority: {
-    type: INTEGER,
+    type: ENUM("low", "medium", "high"),
   },
   isRequired: {
     type: BOOLEAN,
