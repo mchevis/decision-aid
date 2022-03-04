@@ -12,9 +12,17 @@ import {
   Box,
   Divider,
 } from "@mui/material";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 const AttributesBar = ({ attributes, projectId }) => {
   const navigate = useNavigate();
+
+  const priorities = ["low", "medium", "high"];
+  const priorityDots = (prio) => {
+    const numDots = priorities.findIndex((p) => p === prio) + 1 || 0;
+    const dots = new Array(numDots).fill("★");
+    return dots;
+  };
 
   return (
     <Card
@@ -87,7 +95,9 @@ const AttributesBar = ({ attributes, projectId }) => {
                   color="text.secondary"
                   align="center"
                 >
-                  {attributes.find((a) => a.name === "Price")?.priority}
+                  {priorityDots(
+                    attributes.find((a) => a.name === "Price")?.priority
+                  ).map((dot) => dot)}
                 </Typography>
               </Box>
             </Grid>
@@ -116,7 +126,9 @@ const AttributesBar = ({ attributes, projectId }) => {
                   color="text.secondary"
                   align="center"
                 >
-                  {attributes.find((a) => a.name === "Ratings")?.priority}
+                  {priorityDots(
+                    attributes.find((a) => a.name === "Ratings")?.priority
+                  ).map((dot) => dot)}
                 </Typography>
               </Box>
             </Grid>
