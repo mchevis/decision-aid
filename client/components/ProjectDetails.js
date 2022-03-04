@@ -47,6 +47,7 @@ const ProjectDetails = () => {
           size="small"
           variant="outlined"
           onClick={() => navigate(`/${project.id}/createProduct`)}
+          sx={{ m: 2 }}
         >
           ADD PRODUCT
         </Button>

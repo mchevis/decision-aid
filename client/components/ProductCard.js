@@ -81,13 +81,21 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
 
   return (
     <Card>
-      <CardContent>
+      <CardContent
+        maxWidth={300}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Grid
           container
           direction="column"
           spacing={3}
           alignItems="center"
-          maxWidth={300}
+          width={"auto"}
         >
           <Grid item xs={3}>
             <Box
@@ -110,6 +118,7 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
               <Typography
                 gutterBottom
                 variant="body1"
+                color="text.secondary"
                 component="div"
                 align="center"
                 sx={{
@@ -161,7 +170,7 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
         </Grid>
       </CardContent>
       <CardActions
-        sx={{ display: "flex", justifyContent: "space-between", m: 3 }}
+        sx={{ display: "flex", justifyContent: "space-between", m: 2.5 }}
       >
         <Button
           size="small"

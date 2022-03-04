@@ -53,6 +53,7 @@ const AttributesBar = () => {
                   WebkitBoxOrient: "vertical",
                   WebkitLineClamp: 2,
                 }}
+                color="text.secondary"
               >
                 Name
               </Typography>
@@ -81,10 +82,10 @@ const AttributesBar = () => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions sx={{ display: "flex", justifyContent: "center", m: 3 }}>
+      <CardActions sx={{ display: "flex", justifyContent: "center", m: 2.5 }}>
         <Button
           size="small"
-          onClick={() => navigate(`/product/${productId}`)}
+          //   onClick={() => navigate(`/product/${productId}`)}
           variant="contained"
         >
           Edit
