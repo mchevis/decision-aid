@@ -30,16 +30,18 @@ const CompTable = ({ projectId }) => {
           <Grid item xs={2}>
             <AttributesBar />
           </Grid>
-          {products.map((product) => (
-            <Grid item xs={3} key={product.id}>
-              <ProductCard
-                productId={product.id}
-                projectId={projectId}
-                productUrl={product.url}
-                productSource={product.source}
-              />
-            </Grid>
-          ))}
+          <Grid item xs={10} container spacing={2}>
+            {products.map((product) => (
+              <Grid item xs={3} key={product.id}>
+                <ProductCard
+                  productId={product.id}
+                  projectId={projectId}
+                  productUrl={product.url}
+                  productSource={product.source}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </div>
     </div>

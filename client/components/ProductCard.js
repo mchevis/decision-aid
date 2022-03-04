@@ -80,9 +80,8 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
   }, 0);
 
   return (
-    <Card>
+    <Card sx={{ maxWidth: 350 }}>
       <CardContent
-        maxWidth={300}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -90,13 +89,7 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
           alignItems: "center",
         }}
       >
-        <Grid
-          container
-          direction="column"
-          spacing={3}
-          alignItems="center"
-          width={"auto"}
-        >
+        <Grid container direction="column" spacing={3} alignItems="center">
           <Grid item xs={3}>
             <Box
               component="img"
@@ -170,7 +163,11 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
         </Grid>
       </CardContent>
       <CardActions
-        sx={{ display: "flex", justifyContent: "space-between", m: 2.5 }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          m: 2.5,
+        }}
       >
         <Button
           size="small"
