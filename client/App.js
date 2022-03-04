@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import ProjectDetails from "./components/ProjectDetails";
 import ProductForm from "./components/ProductForm";
 import CreateProductForm from "./components/CreateProductForm";
+import AttributesForm from "./components/AttributesForm";
 import { Grid } from "@mui/material";
 
 const App = () => {
@@ -27,6 +28,10 @@ const App = () => {
                 <Route
                   path="/:projectId/createProduct"
                   element={<CreateProductForm />}
+                />
+                <Route
+                  path="/:projectId/editAttributes"
+                  element={<AttributesForm />}
                 />
               </Routes>
             </Grid>

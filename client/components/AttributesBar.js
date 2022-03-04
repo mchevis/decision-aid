@@ -13,7 +13,9 @@ import {
   Divider,
 } from "@mui/material";
 
-const AttributesBar = ({ attributes }) => {
+const AttributesBar = ({ attributes, projectId }) => {
+  const navigate = useNavigate();
+
   return (
     <Card
       sx={{
@@ -134,7 +136,7 @@ const AttributesBar = ({ attributes }) => {
           <Grid item xs={12}>
             <Button
               size="small"
-              // onClick={() => navigate(`/product/${productId}`)}
+              onClick={() => navigate(`/${projectId}/editAttributes`)}
               variant="contained"
               sx={{ width: "100%" }}
             >
