@@ -26,7 +26,8 @@ const Attribute = db.define("attribute", {
     type: STRING,
   },
   priority: {
-    type: ENUM("low", "medium", "high"),
+    type: ENUM("n/a", "low", "medium", "high"),
+    defaultValue: "n/a",
   },
   isRequired: {
     type: BOOLEAN,

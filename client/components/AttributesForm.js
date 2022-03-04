@@ -115,9 +115,10 @@ const AttributesForm = () => {
               error={!!errors[`priority-${att.id}`]}
               sx={{ width: 1 }}
             >
-              <MenuItem value={"Low"}>Low</MenuItem>
-              <MenuItem value={"Medium"}>Medium</MenuItem>
-              <MenuItem value={"High"}>High</MenuItem>
+              <MenuItem value={"low"}>Low</MenuItem>
+              <MenuItem value={"medium"}>Medium</MenuItem>
+              <MenuItem value={"high"}>High</MenuItem>
+              <MenuItem value={"n/a"}>Not Applicable</MenuItem>
             </TextField>
             <TextField
               select

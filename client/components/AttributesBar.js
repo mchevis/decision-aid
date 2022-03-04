@@ -17,9 +17,9 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 const AttributesBar = ({ attributes, projectId }) => {
   const navigate = useNavigate();
 
-  const priorities = ["low", "medium", "high"];
+  const priorities = ["n/a", "low", "medium", "high"];
   const priorityDots = (prio) => {
-    const numDots = priorities.findIndex((p) => p === prio) + 1 || 0;
+    const numDots = priorities.findIndex((p) => p === prio) || 0;
     const dots = new Array(numDots).fill("★");
     return dots;
   };
