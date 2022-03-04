@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 
 const AttributesBar = ({ attributes }) => {
-  console.log(attributes);
   return (
     <Card>
       <CardContent>
@@ -99,12 +98,12 @@ const AttributesBar = ({ attributes }) => {
               </Typography>
             </Grid>
             <Grid item xs={4}>
-              <Box>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  align="center"
-                >
+              <Box
+                sx={{
+                  backgroundColor: "secondary.light",
+                }}
+              >
+                <Typography variant="body2" color="text.primary" align="center">
                   {attributes.find((a) => a.name === "Ratings")?.criteriaValue}
                 </Typography>
               </Box>
