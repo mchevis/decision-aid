@@ -6,16 +6,15 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardMedia,
   Button,
   Typography,
   capitalize,
-  Avatar,
   Box,
   Divider,
 } from "@mui/material";
 
-const AttributesBar = () => {
+const AttributesBar = ({ attributes }) => {
+  console.log(attributes);
   return (
     <Card>
       <CardContent>
@@ -64,15 +63,63 @@ const AttributesBar = () => {
               Source
             </Typography>
           </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body2" color="text.secondary">
-              Price
-            </Typography>
+          <Grid item xs={2} container>
+            <Grid item xs={4} sx={{ width: 1 / 3 }}>
+              <Typography variant="body2" color="text.secondary">
+                Price
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Box
+                sx={{
+                  backgroundColor: "secondary.light",
+                }}
+              >
+                <Typography variant="body2" color="text.primary" align="center">
+                  {attributes.find((a) => a.name === "Price")?.criteriaValue}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  {attributes.find((a) => a.name === "Price")?.priority}
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body2" color="text.secondary">
-              Ratings
-            </Typography>
+          <Grid item xs={2} container>
+            <Grid item xs={4} sx={{ width: 1 / 3 }}>
+              <Typography variant="body2" color="text.secondary">
+                Ratings
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Box>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  {attributes.find((a) => a.name === "Ratings")?.criteriaValue}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  align="center"
+                >
+                  {attributes.find((a) => a.name === "Ratings")?.priority}
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
           <Divider variant="middle" sx={{ width: 180, pt: 2 }} />
           <Grid item xs={2}>
