@@ -98,6 +98,14 @@ const AttributesForm = () => {
           <Grid item key={att.id} xs={3} sx={{ width: "100%" }}>
             <Card>
               <CardContent sx={{ mr: 2, mt: 2 }}>
+                <Typography
+                  variant="h6"
+                  color="text.secondary"
+                  gutterBottom
+                  textAlign={"center"}
+                >
+                  {att.name}
+                </Typography>
                 <TextField
                   required
                   id={`${att.id}-name`}
@@ -109,6 +117,7 @@ const AttributesForm = () => {
                   {...register(`${att.id}-name`, { required: true })}
                   error={!!errors[`${att.id}-name`]}
                   sx={{ width: 1 }}
+                  disabled
                 />
                 <TextField
                   select
