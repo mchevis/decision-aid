@@ -171,7 +171,11 @@ const ProductCard = ({
                   (pa) => pa.attribute.name.toLowerCase() === "ratings"
                 )?.value
               }{" "}
-              stars
+              {productAttributes.find(
+                (pa) => pa.attribute.name.toLowerCase() === "ratings"
+              )?.value
+                ? "stars"
+                : "-"}
             </Typography>
           </Grid>
           <Grid item sx={{ width: "100%", pt: 2 }} textAlign={"center"}>

@@ -153,12 +153,10 @@ const ProductForm2 = ({ productId, editting, setEditting }) => {
             );
             return (
               <TextField
-                required
                 key={attribute.id}
                 id={`${pa?.id || "new"}-value-${attribute.id}`}
                 label={attribute.name}
                 defaultValue={pa?.value || ""}
-                helperText={!!errors[`source`] ? "This field is required" : ""}
                 {...register(`${pa?.id || "new"}-value-${attribute.id}`)}
                 error={!!errors[`${pa?.id || "new"}-value-${attribute.id}`]}
                 sx={{ width: 1 }}
