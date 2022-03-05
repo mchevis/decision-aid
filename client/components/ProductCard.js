@@ -166,23 +166,7 @@ const ProductCard = ({
             </Typography>
           </Grid>
           <Grid item xs={2} container spacing={1}>
-            <Grid
-              item
-              xs={
-                productAttributes.find(
-                  (pa) => pa.attribute.name.toLowerCase() === "ratings"
-                )?.value
-                  ? 8
-                  : 12
-              }
-              textAlign={
-                productAttributes.find(
-                  (pa) => pa.attribute.name.toLowerCase() === "ratings"
-                )?.value
-                  ? "right"
-                  : "center"
-              }
-            >
+            <Grid item xs={8} textAlign={"right"}>
               <Rating
                 name="half-rating-read"
                 defaultValue={0}
