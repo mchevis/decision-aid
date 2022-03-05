@@ -103,7 +103,7 @@ const ProductForm = ({ productId, editting, setEditting }) => {
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1 },
+        "& .MuiTextField-root": { m: 2, mt: 1 },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -137,6 +137,7 @@ const ProductForm = ({ productId, editting, setEditting }) => {
             {...register("url", { required: true })}
             error={!!errors[`url`]}
             sx={{ width: 1 }}
+            size="small"
           />
           <TextField
             required
@@ -147,6 +148,7 @@ const ProductForm = ({ productId, editting, setEditting }) => {
             {...register("source", { required: true })}
             error={!!errors[`source`]}
             sx={{ width: 1 }}
+            size="small"
           />
 
           {attributes.map((attribute) => {
@@ -162,6 +164,7 @@ const ProductForm = ({ productId, editting, setEditting }) => {
                 {...register(`${pa?.id || "new"}-value-${attribute.id}`)}
                 error={!!errors[`${pa?.id || "new"}-value-${attribute.id}`]}
                 sx={{ width: 1 }}
+                size="small"
               />
             );
           })}
@@ -171,7 +174,8 @@ const ProductForm = ({ productId, editting, setEditting }) => {
             container
             spacing={1}
             sx={{
-              mb: 2,
+              mb: 4,
+              mt: 1,
               alignItems: "center",
               justifyContent: "center",
             }}
