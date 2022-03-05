@@ -166,7 +166,7 @@ const ProductCard = ({
             </Typography>
           </Grid>
           <Grid item xs={2} container spacing={1}>
-            <Grid item xs={9} textAlign={"right"}>
+            <Grid item xs={8} textAlign={"right"}>
               <Rating
                 name="half-rating-read"
                 defaultValue={0}
@@ -179,7 +179,7 @@ const ProductCard = ({
                 readOnly
               />
             </Grid>
-            <Grid item xs={3} textAlign={"left"}>
+            <Grid item xs={4} textAlign={"left"}>
               {
                 <Typography variant="body2" color="text.secondary">
                   {`(${
