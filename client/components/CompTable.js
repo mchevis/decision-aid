@@ -4,10 +4,14 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import AttributesBar from "./AttributesBar";
 import { Grid } from "@mui/material";
+import ProductForm2 from "./ProductForm2";
 
 const CompTable = ({ projectId }) => {
   const [attributes, setAttributes] = useState([]);
   const [products, setProducts] = useState([]);
+  const [editting, setEditting] = useState({});
+
+  console.log(editting);
 
   useEffect(async () => {
     if (projectId) {
@@ -33,12 +37,25 @@ const CompTable = ({ projectId }) => {
           <Grid item xs={12} sm={9} md={10} container spacing={2}>
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-                <ProductCard
-                  productId={product.id}
-                  projectId={projectId}
-                  productUrl={product.url}
-                  productSource={product.source}
-                />
+                {!editting[product.id] ? (
+                  <ProductCard
+                    productId={product.id}
+                    projectId={projectId}
+                    productUrl={product.url}
+                    productSource={product.source}
+                    setEditting={setEditting}
+                    editting={editting}
+                  />
+                ) : (
+                  <ProductForm2
+                    productId={product.id}
+                    projectId={projectId}
+                    productUrl={product.url}
+                    productSource={product.source}
+                    setEditting={setEditting}
+                    editting={editting}
+                  />
+                )}
               </Grid>
             ))}
           </Grid>

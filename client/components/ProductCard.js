@@ -13,7 +13,14 @@ import {
 } from "@mui/material";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
-const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
+const ProductCard = ({
+  productId,
+  projectId,
+  productUrl,
+  productSource,
+  editting,
+  setEditting,
+}) => {
   const [productAttributes, setProductAttributes] = useState([]);
   const [attributes, setAttributes] = useState([]);
 
@@ -182,7 +189,8 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
           <Grid item>
             <Button
               size="small"
-              onClick={() => navigate(`/product/${productId}`)}
+              // onClick={() => navigate(`/product/${productId}`)}
+              onClick={() => setEditting({ ...editting, [productId]: true })}
               variant="contained"
             >
               Edit

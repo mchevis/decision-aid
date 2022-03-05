@@ -23,7 +23,13 @@ const AttributesForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting, isSubmitSuccessful, dirtyFields },
+    formState: {
+      errors,
+      isSubmitting,
+      isSubmitSuccessful,
+      dirtyFields,
+      isDirty,
+    },
     reset,
   } = useForm();
 
@@ -64,7 +70,7 @@ const AttributesForm = () => {
       })
     );
 
-    // navigate(-1);
+    navigate(-1);
   };
 
   return (
@@ -116,7 +122,7 @@ const AttributesForm = () => {
                       : ""
                   }
                   {...register(`${att.id}-priority`, { required: true })}
-                  error={!!errors[`${att.id}-priority-`]}
+                  error={!!errors[`${att.id}-priority`]}
                   sx={{ width: 1 }}
                 >
                   <MenuItem value={"low"}>Low</MenuItem>
@@ -205,7 +211,7 @@ const AttributesForm = () => {
               size="medium"
               variant="contained"
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !isDirty}
               form="edit-attributes-form"
             >
               Save

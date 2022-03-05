@@ -114,7 +114,7 @@ const AttributesBar = ({ attributes, projectId }) => {
             <Grid item xs={4}>
               <Box
                 sx={{
-                  backgroundColor: "secondary.light",
+                  backgroundColor: "primary.light",
                 }}
               >
                 <Typography variant="body2" color="text.primary" align="center">
