@@ -171,13 +171,19 @@ const AttributesBar = ({ attributes, projectId }) => {
         </Grid>
       </CardContent>
       <CardActions>
-        <Grid container spacing={0} sx={{ mb: 2 }} justifyContent={"center"}>
+        <Grid
+          container
+          spacing={0}
+          sx={{ mb: 2 }}
+          justifyContent={"center"}
+          textAlign={"center"}
+        >
           <Grid item xs={12}>
             <Button
               size="small"
               onClick={() => navigate(`/${projectId}/editAttributes`)}
               variant="contained"
-              sx={{ width: "100%" }}
+              sx={{ width: "70%" }}
             >
               Edit
             </Button>
