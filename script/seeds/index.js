@@ -12,12 +12,12 @@ async function seed() {
       name: "Air Fryer",
       category: "product",
       subCategory: "appliance",
+      status: "completed",
     }),
     Project.create({
       name: "Beds",
       category: "product",
       subCategory: "furniture",
-      status: "completed",
     }),
   ]);
 

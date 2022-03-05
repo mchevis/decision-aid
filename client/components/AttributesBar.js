@@ -77,10 +77,10 @@ const AttributesBar = ({ attributes, projectId }) => {
                 Price
               </Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Box
                 sx={{
-                  backgroundColor: "secondary.light",
+                  backgroundColor: "primary.light",
                 }}
               >
                 <Typography variant="body2" color="text.primary" align="center">
@@ -111,7 +111,7 @@ const AttributesBar = ({ attributes, projectId }) => {
                 Ratings
               </Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Box
                 sx={{
                   backgroundColor: "primary.light",
@@ -137,6 +137,13 @@ const AttributesBar = ({ attributes, projectId }) => {
                     ).map((dot) => dot)}
                 </Typography>
               </Box>
+            </Grid>
+            <Grid item xs={1}>
+              <Typography variant="body2" color="text.primary" align="center">
+                {attributes.find((a) => a.name === "Ratings")?.isRequired
+                  ? "❗"
+                  : ""}
+              </Typography>
             </Grid>
           </Grid>
           <Grid item sx={{ width: "100%", pt: 2 }} textAlign={"center"}>

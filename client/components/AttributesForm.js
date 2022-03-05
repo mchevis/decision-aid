@@ -107,19 +107,6 @@ const AttributesForm = () => {
                   {att.name}
                 </Typography>
                 <TextField
-                  required
-                  id={`${att.id}-name`}
-                  label="Name"
-                  defaultValue={att.name}
-                  helperText={
-                    !!errors[`${att.id}-name`] ? "This field is required" : ""
-                  }
-                  {...register(`${att.id}-name`, { required: true })}
-                  error={!!errors[`${att.id}-name`]}
-                  sx={{ width: 1 }}
-                  disabled
-                />
-                <TextField
                   select
                   required
                   id={`${att.id}-priority`}
