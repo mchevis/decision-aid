@@ -96,7 +96,7 @@ const AttributesBar = ({ attributes, projectId }) => {
                   align="center"
                 >
                   {priorityDots(
-                    attributes.find((a) => a.name === "Ratings")?.priority
+                    attributes.find((a) => a.name === "Price")?.priority
                   ) &&
                     priorityDots(
                       attributes.find((a) => a.name === "Price")?.priority
@@ -113,7 +113,14 @@ const AttributesBar = ({ attributes, projectId }) => {
             </Grid>
           </Grid>
           <Grid item xs={2} container>
-            <Grid item xs={4} sx={{ width: 1 / 3 }}>
+            <Grid
+              item
+              xs={4}
+              sx={{ width: 1 / 3 }}
+              sx={{
+                height: 28,
+              }}
+            >
               <Typography variant="body2" color="text.secondary">
                 Ratings
               </Typography>
