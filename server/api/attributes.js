@@ -9,7 +9,6 @@ router.get("/", async (req, res, next) => {
   try {
     const attributes = await Attribute.findAll({
       order: ["id"],
-      include: { attributes },
     });
     res.json(attributes);
   } catch (err) {

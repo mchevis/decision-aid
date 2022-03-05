@@ -54,19 +54,16 @@ const AttributesForm = () => {
 
     //TODO: MAY NEED TO REVISIT
     await Promise.all(
-      dirtyAttributes.map((att) =>
-        axios.put(`/api/attributes/${att.id}`, {
-          ...data,
-        })
-      )
+      dirtyAttributes.map((att) => {
+        const attId = att[0].split("-")[0];
+        const attName = att[0].split("-")[1];
+        const attValue = att[1];
+        axios.put(`/api/attributes/${attId}`, { [attName]: attValue });
+      })
     );
 
     // navigate(-1);
   };
-
-  const watchSource = watch(["criteriaType"]);
-
-  console.log(attributes);
 
   return (
     <Box
@@ -93,26 +90,27 @@ const AttributesForm = () => {
           <Grid key={att.id} item xs={3} sx={{ width: 1 }}>
             <TextField
               required
-              id={`name-${att.id}`}
+              id={`${att.id}-name`}
               label="Name"
               defaultValue={att.name}
               helperText={
-                !!errors[`name-${att.id}`] ? "This field is required" : ""
+                !!errors[`${att.id}-name`] ? "This field is required" : ""
               }
-              {...register(`name-${att.id}`, { required: true })}
-              error={!!errors[`name-${att.id}`]}
+              {...register(`${att.id}-name`, { required: true })}
+              error={!!errors[`${att.id}-name`]}
               sx={{ width: 1 }}
             />
             <TextField
               select
-              id={`priority-${att.id}`}
+              required
+              id={`${att.id}-priority`}
               label="Level of Priority"
               defaultValue={att.priority}
               helperText={
-                !!errors[`priority-${att.id}`] ? "This field is required" : ""
+                !!errors[`${att.id}-priority`] ? "This field is required" : ""
               }
-              {...register(`priority-${att.id}`, { required: true })}
-              error={!!errors[`priority-${att.id}`]}
+              {...register(`${att.id}-priority`, { required: true })}
+              error={!!errors[`${att.id}-priority-`]}
               sx={{ width: 1 }}
             >
               <MenuItem value={"low"}>Low</MenuItem>
@@ -123,16 +121,16 @@ const AttributesForm = () => {
             <TextField
               select
               required
-              id={`criteriaType-${att.id}`}
+              id={`${att.id}-criteriaType`}
               label="Criteria Type"
               defaultValue={att.criteriaType}
               helperText={
-                !!errors[`criteriaType-${att.id}`]
+                !!errors[`${att.id}-criteriaType`]
                   ? "This field is required"
                   : ""
               }
-              {...register(`criteriaType-${att.id}`, { required: true })}
-              error={!!errors[`criteriaType-${att.id}`]}
+              {...register(`${att.id}-criteriaType`, { required: true })}
+              error={!!errors[`${att.id}-criteriaType`]}
               sx={{ width: 1 }}
             >
               {criteriaTypePicklist?.map((criteria) => (
@@ -142,32 +140,31 @@ const AttributesForm = () => {
               ))}
             </TextField>
             <TextField
-              id={`criteriaValue-${att.id}`}
+              id={`${att.id}-criteriaValue`}
               label="Criteria Value"
               defaultValue={att.criteriaValue || ""}
               helperText={
-                !!errors[`criteriaValue-${att.id}`]
-                  ? "This field is required"
-                  : "Leave empty for Informational. For Min/Max: 'min' or 'max'. For boolean: 'true' or 'false'"
+                "Leave empty for Informational. For Min/Max: 'min' or 'max'. For boolean: 'true' or 'false'"
               }
-              {...register(`criteriaValue-${att.id}`, { required: true })}
-              error={!!errors[`criteriaValue-${att.id}`]}
+              {...register(`${att.id}-criteriaValue`)}
+              error={!!errors[`${att.id}-criteriaValue`]}
               sx={{ width: 1 }}
             />
             <TextField
               select
-              id={`isRequired-${att.id}`}
+              required
+              id={`${att.id}-isRequired`}
               label="Criteria MUST be met"
               defaultValue={att.isRequired}
               helperText={
-                !!errors[`isRequired-${att.id}`] ? "This field is required" : ""
+                !!errors[`${att.id}-isRequired`] ? "This field is required" : ""
               }
-              {...register(`isRequired-${att.id}`, { required: true })}
-              error={!!errors[`isRequired-${att.id}`]}
+              {...register(`${att.id}-isRequired`, { required: true })}
+              error={!!errors[`${att.id}-isRequired`]}
               sx={{ width: 1 }}
             >
-              <MenuItem value={true}>Yes</MenuItem>
-              <MenuItem value={false}>No</MenuItem>
+              <MenuItem value={"true"}>Yes</MenuItem>
+              <MenuItem value={"false"}>No</MenuItem>
             </TextField>
           </Grid>
         ))}
