@@ -11,8 +11,6 @@ const CompTable = ({ projectId }) => {
   const [products, setProducts] = useState([]);
   const [editting, setEditting] = useState({});
 
-  console.log(editting);
-
   useEffect(async () => {
     if (projectId) {
       const { data: products } = await axios.get(
