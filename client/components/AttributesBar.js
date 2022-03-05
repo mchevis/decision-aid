@@ -104,6 +104,13 @@ const AttributesBar = ({ attributes, projectId }) => {
                 </Typography>
               </Box>
             </Grid>
+            <Grid item xs={1}>
+              <Typography variant="body2" color="text.primary" align="center">
+                {attributes.find((a) => a.name === "Price")?.isRequired
+                  ? "❗"
+                  : ""}
+              </Typography>
+            </Grid>
           </Grid>
           <Grid item xs={2} container>
             <Grid item xs={4} sx={{ width: 1 / 3 }}>
