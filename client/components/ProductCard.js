@@ -166,27 +166,48 @@ const ProductCard = ({
             </Typography>
           </Grid>
           <Grid item xs={2} container spacing={1}>
-            <Grid item xs={8} textAlign={"right"}>
+            <Grid
+              item
+              xs={
+                productAttributes.find(
+                  (pa) => pa.attribute.name.toLowerCase() === "ratings"
+                )?.value
+                  ? 8
+                  : 12
+              }
+              textAlign={
+                productAttributes.find(
+                  (pa) => pa.attribute.name.toLowerCase() === "ratings"
+                )?.value
+                  ? "right"
+                  : "center"
+              }
+            >
               <Rating
                 name="half-rating-read"
                 defaultValue={0}
                 precision={0.5}
-                value={Number(
-                  productAttributes.find(
-                    (pa) => pa.attribute.name.toLowerCase() === "ratings"
-                  )?.value
-                )}
+                value={
+                  Number(
+                    productAttributes.find(
+                      (pa) => pa.attribute.name.toLowerCase() === "ratings"
+                    )?.value
+                  ) || 0
+                }
                 readOnly
               />
             </Grid>
             <Grid item xs={4} textAlign={"left"}>
               {
                 <Typography variant="body2" color="text.secondary">
-                  {`(${
-                    productAttributes.find(
-                      (pa) => pa.attribute.name.toLowerCase() === "ratings"
-                    )?.value || "??"
-                  })`}
+                  {productAttributes.find(
+                    (pa) => pa.attribute.name.toLowerCase() === "ratings"
+                  )?.value &&
+                    `(${
+                      productAttributes.find(
+                        (pa) => pa.attribute.name.toLowerCase() === "ratings"
+                      )?.value
+                    })`}
                 </Typography>
               }
             </Grid>
