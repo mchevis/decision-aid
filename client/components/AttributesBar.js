@@ -158,7 +158,7 @@ const AttributesBar = ({ attributes, projectId }) => {
           </Grid>
           <Grid item xs={2}>
             <Typography variant="body1" color="text.secondary">
-              Total
+              Total Points
             </Typography>
           </Grid>
         </Grid>

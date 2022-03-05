@@ -94,92 +94,94 @@ const AttributesForm = () => {
 
       {/* FORM FIELDS */}
       <Grid container spacing={3}>
-        {attributes.map((att) => (
-          <Grid item key={att.id} xs={3} sx={{ width: "100%" }}>
-            <Card>
-              <CardContent sx={{ mr: 2, mt: 2 }}>
-                <Typography
-                  variant="h6"
-                  color="text.secondary"
-                  gutterBottom
-                  textAlign={"center"}
-                >
-                  {att.name}
-                </Typography>
-                <TextField
-                  select
-                  required
-                  id={`${att.id}-priority`}
-                  label="Level of Priority"
-                  defaultValue={att.priority}
-                  helperText={
-                    !!errors[`${att.id}-priority`]
-                      ? "This field is required"
-                      : ""
-                  }
-                  {...register(`${att.id}-priority`, { required: true })}
-                  error={!!errors[`${att.id}-priority`]}
-                  sx={{ width: 1 }}
-                >
-                  <MenuItem value={"low"}>Low</MenuItem>
-                  <MenuItem value={"medium"}>Medium</MenuItem>
-                  <MenuItem value={"high"}>High</MenuItem>
-                  <MenuItem value={"n/a"}>Not Applicable</MenuItem>
-                </TextField>
-                <TextField
-                  select
-                  required
-                  id={`${att.id}-criteriaType`}
-                  label="Criteria Type"
-                  defaultValue={att.criteriaType}
-                  helperText={
-                    !!errors[`${att.id}-criteriaType`]
-                      ? "This field is required"
-                      : ""
-                  }
-                  {...register(`${att.id}-criteriaType`, { required: true })}
-                  error={!!errors[`${att.id}-criteriaType`]}
-                  sx={{ width: 1 }}
-                >
-                  {criteriaTypePicklist?.map((criteria) => (
-                    <MenuItem key={criteria} value={criteria}>
-                      {criteria}
-                    </MenuItem>
-                  ))}
-                </TextField>
-                <TextField
-                  id={`${att.id}-criteriaValue`}
-                  label="Criteria Value"
-                  defaultValue={att.criteriaValue || ""}
-                  helperText={
-                    "Leave empty for Informational. For Min/Max: 'min' or 'max'. For boolean: 'true' or 'false'"
-                  }
-                  {...register(`${att.id}-criteriaValue`)}
-                  error={!!errors[`${att.id}-criteriaValue`]}
-                  sx={{ width: 1 }}
-                />
-                <TextField
-                  select
-                  required
-                  id={`${att.id}-isRequired`}
-                  label="Criteria MUST be met"
-                  defaultValue={att.isRequired}
-                  helperText={
-                    !!errors[`${att.id}-isRequired`]
-                      ? "This field is required"
-                      : ""
-                  }
-                  {...register(`${att.id}-isRequired`, { required: true })}
-                  error={!!errors[`${att.id}-isRequired`]}
-                  sx={{ width: 1 }}
-                >
-                  <MenuItem value={"true"}>Yes</MenuItem>
-                  <MenuItem value={"false"}>No</MenuItem>
-                </TextField>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
+        {attributes
+          .sort((a) => a.name)
+          .map((att) => (
+            <Grid item key={att.id} xs={3} sx={{ width: "100%" }}>
+              <Card>
+                <CardContent sx={{ mr: 2, mt: 2 }}>
+                  <Typography
+                    variant="h6"
+                    color="text.secondary"
+                    gutterBottom
+                    textAlign={"center"}
+                  >
+                    {att.name}
+                  </Typography>
+                  <TextField
+                    select
+                    required
+                    id={`${att.id}-priority`}
+                    label="Level of Priority"
+                    defaultValue={att.priority}
+                    helperText={
+                      !!errors[`${att.id}-priority`]
+                        ? "This field is required"
+                        : ""
+                    }
+                    {...register(`${att.id}-priority`, { required: true })}
+                    error={!!errors[`${att.id}-priority`]}
+                    sx={{ width: 1 }}
+                  >
+                    <MenuItem value={"low"}>Low</MenuItem>
+                    <MenuItem value={"medium"}>Medium</MenuItem>
+                    <MenuItem value={"high"}>High</MenuItem>
+                    <MenuItem value={"n/a"}>Not Applicable</MenuItem>
+                  </TextField>
+                  <TextField
+                    select
+                    required
+                    id={`${att.id}-criteriaType`}
+                    label="Criteria Type"
+                    defaultValue={att.criteriaType}
+                    helperText={
+                      !!errors[`${att.id}-criteriaType`]
+                        ? "This field is required"
+                        : ""
+                    }
+                    {...register(`${att.id}-criteriaType`, { required: true })}
+                    error={!!errors[`${att.id}-criteriaType`]}
+                    sx={{ width: 1 }}
+                  >
+                    {criteriaTypePicklist?.map((criteria) => (
+                      <MenuItem key={criteria} value={criteria}>
+                        {criteria}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                  <TextField
+                    id={`${att.id}-criteriaValue`}
+                    label="Criteria Value"
+                    defaultValue={att.criteriaValue || ""}
+                    helperText={
+                      "Leave empty for Informational. For Min/Max: 'min' or 'max'. For boolean: 'true' or 'false'"
+                    }
+                    {...register(`${att.id}-criteriaValue`)}
+                    error={!!errors[`${att.id}-criteriaValue`]}
+                    sx={{ width: 1 }}
+                  />
+                  <TextField
+                    select
+                    required
+                    id={`${att.id}-isRequired`}
+                    label="Criteria MUST be met"
+                    defaultValue={att.isRequired}
+                    helperText={
+                      !!errors[`${att.id}-isRequired`]
+                        ? "This field is required"
+                        : ""
+                    }
+                    {...register(`${att.id}-isRequired`, { required: true })}
+                    error={!!errors[`${att.id}-isRequired`]}
+                    sx={{ width: 1 }}
+                  >
+                    <MenuItem value={"true"}>Yes</MenuItem>
+                    <MenuItem value={"false"}>No</MenuItem>
+                  </TextField>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
       </Grid>
 
       <Grid

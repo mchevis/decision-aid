@@ -29,12 +29,12 @@ const CompTable = ({ projectId }) => {
     <div className="comp--products">
       <div className="products--list">
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={3} md={2}>
+          <Grid item xs={12} sm={4} md={3} lg={2}>
             <AttributesBar attributes={attributes} projectId={projectId} />
           </Grid>
-          <Grid item xs={12} sm={9} md={10} container spacing={2}>
+          <Grid item xs={12} sm={8} md={9} lg={10} container spacing={2}>
             {products.map((product) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+              <Grid item xs={12} sm={6} md={6} lg={3} xl={3} key={product.id}>
                 {!editting[product.id] ? (
                   <ProductCard
                     productId={product.id}
