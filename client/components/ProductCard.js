@@ -67,8 +67,13 @@ const ProductCard = ({ productId, projectId, productUrl, productSource }) => {
       } else {
         return "DISQUALIFIED";
       }
-    }
-    if (attr.criteriaType === "minMax") {
+    } else if (attr.criteriaType === "moreThanOrEqualTo") {
+      if (Number(prodAttr.value) >= Number(attr.criteriaValue)) {
+        return total + weight * 4;
+      } else {
+        return "DISQUALIFIED";
+      }
+    } else if (attr.criteriaType === "minMax") {
       const attrRanking = attributeRankings?.find(
         (att) => att.id === attr.id
       ).attrRanking;

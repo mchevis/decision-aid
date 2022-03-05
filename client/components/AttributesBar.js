@@ -20,7 +20,7 @@ const AttributesBar = ({ attributes, projectId }) => {
   const priorities = ["n/a", "low", "medium", "high"];
   const priorityDots = (prio) => {
     const numDots = priorities.findIndex((p) => p === prio) || 0;
-    const dots = new Array(numDots).fill("★");
+    const dots = numDots > 0 ? new Array(numDots).fill("★") : 0;
     return dots;
   };
 
@@ -96,8 +96,11 @@ const AttributesBar = ({ attributes, projectId }) => {
                   align="center"
                 >
                   {priorityDots(
-                    attributes.find((a) => a.name === "Price")?.priority
-                  ).map((dot) => dot)}
+                    attributes.find((a) => a.name === "Ratings")?.priority
+                  ) &&
+                    priorityDots(
+                      attributes.find((a) => a.name === "Price")?.priority
+                    ).map((dot) => dot)}
                 </Typography>
               </Box>
             </Grid>
@@ -128,7 +131,10 @@ const AttributesBar = ({ attributes, projectId }) => {
                 >
                   {priorityDots(
                     attributes.find((a) => a.name === "Ratings")?.priority
-                  ).map((dot) => dot)}
+                  ) &&
+                    priorityDots(
+                      attributes.find((a) => a.name === "Ratings")?.priority
+                    ).map((dot) => dot)}
                 </Typography>
               </Box>
             </Grid>
