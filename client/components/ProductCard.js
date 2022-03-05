@@ -10,6 +10,7 @@ import {
   Typography,
   Box,
   Divider,
+  Rating,
 } from "@mui/material";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
@@ -164,19 +165,31 @@ const ProductCard = ({
               }
             </Typography>
           </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body2" color="text.secondary">
+          <Grid item xs={2} container spacing={1}>
+            <Grid item xs={9} textAlign={"right"}>
+              <Rating
+                name="half-rating-read"
+                defaultValue={0}
+                precision={0.5}
+                value={Number(
+                  productAttributes.find(
+                    (pa) => pa.attribute.name.toLowerCase() === "ratings"
+                  )?.value
+                )}
+                readOnly
+              />
+            </Grid>
+            <Grid item xs={3} textAlign={"left"}>
               {
-                productAttributes.find(
-                  (pa) => pa.attribute.name.toLowerCase() === "ratings"
-                )?.value
-              }{" "}
-              {productAttributes.find(
-                (pa) => pa.attribute.name.toLowerCase() === "ratings"
-              )?.value
-                ? "stars"
-                : "-"}
-            </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {`(${
+                    productAttributes.find(
+                      (pa) => pa.attribute.name.toLowerCase() === "ratings"
+                    )?.value || "??"
+                  })`}
+                </Typography>
+              }
+            </Grid>
           </Grid>
           <Grid item sx={{ width: "100%", pt: 2 }} textAlign={"center"}>
             <Divider variant="middle" />
