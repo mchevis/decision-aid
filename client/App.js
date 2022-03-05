@@ -7,7 +7,6 @@ import ProjectDetails from "./components/ProjectDetails";
 import ProductForm from "./components/ProductForm";
 import CreateProductForm from "./components/CreateProductForm";
 import AttributesForm from "./components/AttributesForm";
-import ProductForm2 from "./components/ProductForm2";
 import { Grid } from "@mui/material";
 
 const App = () => {
@@ -35,8 +34,8 @@ const App = () => {
                   element={<AttributesForm />}
                 />
                 <Route
-                  path="/:productId/editProduct"
-                  element={<ProductForm2 />}
+                  path="/:productIdParam/editProduct"
+                  element={<ProductForm />}
                 />
               </Routes>
             </Grid>

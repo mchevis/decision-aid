@@ -2,10 +2,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import {
+  Box,
+  TextField,
+  MenuItem,
+  Typography,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+  CardActions,
+} from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save";
 
-const ProductForm = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+const ProductForm = ({ productId, editting, setEditting }) => {
+  const { productIdParam } = useParams();
 
   const {
     register,
@@ -26,11 +38,14 @@ const ProductForm = () => {
   const [productAttributes, setProductAttributes] = useState([]);
 
   useEffect(async () => {
-    const { data: product } = await axios.get(`/api/products/${id}`);
+    //if inline card editing, productId, if coming from the route, productIdParam
+    const productId2 = productId || productIdParam;
+
+    const { data: product } = await axios.get(`/api/products/${productId2}`);
     setProduct(product);
 
     const { data: productAttributes } = await axios.get(
-      `/api/productAttributes/product/${id}`
+      `/api/productAttributes/product/${productId2}`
     );
     setProductAttributes(productAttributes);
 
@@ -39,7 +54,7 @@ const ProductForm = () => {
     );
     setAttributes(attributes);
 
-    reset();
+    reset({ source: product.source, url: product.url });
   }, []);
 
   useEffect(
@@ -49,7 +64,7 @@ const ProductForm = () => {
 
   const onSubmit = async (data, e) => {
     const productBody = { source: data.source, url: data.url };
-    await axios.put(`/api/products/${id}`, productBody);
+    await axios.put(`/api/products/${product.id}`, productBody);
     setProduct({ ...product, productBody });
 
     const dirtyAttributes = Object.entries(data)
@@ -61,15 +76,7 @@ const ProductForm = () => {
     let pas;
     await Promise.all(
       dirtyAttributes.map((att) => {
-        if (att[1] === "priority") {
-          const prio = att[2] === "-99" ? 0 : att[2];
-          axios.put(`/api/attributes/${att[0]}`, { priority: prio });
-          setAttributes(
-            attributes.map((att) =>
-              att.id === Number(att[0]) ? { ...att, priority: prio } : att
-            )
-          );
-        } else if (att[0] === "new" && att[1] === "value") {
+        if (att[0] === "new" && att[1] === "value") {
           pas = axios.post(`/api/productAttributes/`, {
             productId: product.id,
             attributeId: att[2],
@@ -88,60 +95,125 @@ const ProductForm = () => {
       })
     );
     if (pas) setProductAttributes([...productAttributes, pas]);
+
+    setEditting({ ...editting, [product.id]: false });
   };
 
-  const onError = (errors, e) => console.log(errors, e);
-
   return (
-    <div className="product--edit--page">
-      <form
-        onSubmit={handleSubmit(onSubmit, onError)}
-        className="product--form"
+    <Box
+      component="form"
+      sx={{
+        "& .MuiTextField-root": { m: 1 },
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit(onSubmit)}
+      id="edit-product-form"
+    >
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        <label>Source:</label>
-        <input defaultValue={product.source} {...register("source")} />
-        {errors.source && <span>This field is required</span>}
-        <label>URL:</label>
-        <input defaultValue={product.url} {...register("url")} />
-        {errors.url && <span>This field is required</span>}
+        <CardContent sx={{ mr: 2, mt: 2, width: 1 }}>
+          {/* <Typography sx={{ fontSize: 24 }} color="text.secondary" gutterBottom>
+            Edit Attributes
+          </Typography> */}
 
-        {attributes.map((attribute) => {
-          const pa = productAttributes.find(
-            (pa) => pa.attributeId === attribute.id
-          );
-          return (
-            <div key={attribute.id}>
-              <h4>{attribute.name}</h4>
-              <div className="product--form--attribute">
-                <label>Value:</label>
-                <input
-                  defaultValue={pa?.value || ""}
-                  {...register(`${pa?.id || "new"}-value-${attribute.id}`)}
-                />
-                <label>Priority:</label>
-                <select
-                  name="Priority"
-                  defaultValue={attribute.priority ? attribute.priority : -99}
-                  {...register(`${attribute.id}-priority`)}
+          {/* FORM FIELDS  */}
+          <TextField
+            required
+            id="url"
+            label="Product URL"
+            defaultValue="Product URL"
+            helperText={!!errors[`url`] ? "This field is required" : ""}
+            {...register("url", { required: true })}
+            error={!!errors[`url`]}
+            sx={{ width: 1 }}
+          />
+          <TextField
+            required
+            id="source"
+            label="Website"
+            defaultValue="Website"
+            helperText={!!errors[`source`] ? "This field is required" : ""}
+            {...register("source", { required: true })}
+            error={!!errors[`source`]}
+            sx={{ width: 1 }}
+          />
+
+          {attributes.map((attribute) => {
+            const pa = productAttributes.find(
+              (pa) => pa.attributeId === attribute.id
+            );
+            return (
+              <TextField
+                key={attribute.id}
+                id={`${pa?.id || "new"}-value-${attribute.id}`}
+                label={attribute.name}
+                defaultValue={pa?.value || ""}
+                {...register(`${pa?.id || "new"}-value-${attribute.id}`)}
+                error={!!errors[`${pa?.id || "new"}-value-${attribute.id}`]}
+                sx={{ width: 1 }}
+              />
+            );
+          })}
+        </CardContent>
+        <CardActions>
+          <Grid
+            container
+            spacing={1}
+            sx={{
+              mb: 2,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Grid item>
+              <Button
+                size="small"
+                onClick={() =>
+                  setEditting({ ...editting, [product.id]: false })
+                }
+                variant="outlined"
+              >
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item>
+              {isSubmitting ? (
+                <LoadingButton
+                  size="small"
+                  loading
+                  loadingPosition="start"
+                  startIcon={<SaveIcon />}
+                  variant="outlined"
                 >
-                  <option value={-99} hidden disabled>
-                    Select a priority
-                  </option>
-                  <option value={5}>5 - Most important</option>
-                  <option value={4}>4</option>
-                  <option value={3}>3</option>
-                  <option value={2}>2</option>
-                  <option value={1}>1 - Least important</option>
-                  <option value={0}>I don't want to prioritize this</option>
-                </select>
-              </div>
-            </div>
-          );
-        })}
-        <input type="submit" disabled={isSubmitting || !isDirty} />
-      </form>
-      <button onClick={() => navigate(-1)}>Cancel</button>
-    </div>
+                  Save
+                </LoadingButton>
+              ) : (
+                <Button
+                  size="small"
+                  variant="contained"
+                  type="submit"
+                  disabled={isSubmitting || !isDirty}
+                  form="edit-product-form"
+                >
+                  Save
+                </Button>
+              )}
+            </Grid>
+          </Grid>
+        </CardActions>
+      </Card>
+    </Box>
   );
 };
 

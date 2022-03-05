@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import AttributesBar from "./AttributesBar";
 import { Grid } from "@mui/material";
-import ProductForm2 from "./ProductForm2";
+import ProductForm from "./ProductForm";
 
 const CompTable = ({ projectId }) => {
   const [attributes, setAttributes] = useState([]);
@@ -47,7 +47,7 @@ const CompTable = ({ projectId }) => {
                     editting={editting}
                   />
                 ) : (
-                  <ProductForm2
+                  <ProductForm
                     productId={product.id}
                     projectId={projectId}
                     productUrl={product.url}
