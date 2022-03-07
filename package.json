@@ -10,7 +10,7 @@
     "start": "node server/index.js",
     "start:dev": "npm run build:dev & npm run start-server",
     "start:dev:seed": "SEED=true npm run start:dev",
-    "start-server": "JWT=shh nodemon server -e html,js,scss --ignore public --ignore client"
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client"
   },
   "keywords": [],
   "author": "Marina Flaksberg Chevis",
@@ -27,12 +27,12 @@
     "pg": "^8.7.3",
     "puppeteer": "^13.4.1",
     "react-hook-form": "^7.27.1",
-    "sequelize": "^6.17.0"
+    "sequelize": "^6.17.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-react": "^7.16.7",
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
